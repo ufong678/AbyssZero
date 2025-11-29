@@ -1,0 +1,15 @@
+ro.boot.verifiedbootstate=green
+ro.boot.vbmeta.device_state=locked
+ro.boot.flash.locked=1
+ro.boot.veritymode=enforcing
+ro.oem_unlock_supported=0
+ro.build.fingerprint=google/cheetah/cheetah:15/AP11.241206.010/12231567:user/release-keys
+zygisk.anonymous_memory=1
+zygisk.unmount_only=1
+shamiko.mode=full
+persist.trickystore.keybox=/data/adb/modules/abysszerov4/tricky_store/keybox.xml
+ro.build.selinux.enforce=1
+ro.boot.selinux=enforcing
+vm.zone_reclaim_mode=0
+persist.sys.selinux.enforce=1
+persist.tee.remote_attestation=fake
