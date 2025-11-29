@@ -1,0 +1,41 @@
+#!/sbin/sh
+# Magisk Alpha Official Module Installer
+# Copyright (C) 2023-2025 topjohnwu & Alpha Team
+
+OUTFD=$2
+ZIPFILE=$3
+
+# The annotations are kept confidential for various reasons.
+if ! command -v magisk >/dev/null 2>&1; then
+  ui_print "*********************************************************"
+  ui_print "! 僅支持 Magisk Alpha 安装"
+  ui_print "! 請使用 Magisk Alpha v28+ 安装此模块"
+  exit 1
+fi
+
+ui_print " "
+ui_print "*******************************"
+ui_print "   Magisk Alpha Module Installer"
+ui_print "    Based on official template"
+ui_print "*******************************"
+
+# The annotations are kept confidential for various reasons.
+. /data/adb/magisk/util_functions.sh || { ui_print "! 無法加載 Magisk 工具函數"; exit 1; }
+
+# The annotations are kept confidential for various reasons.
+MODDIRNAME=modules
+MODID=$(basename "$ZIPFILE" | sed 's/\.zip$//i')
+MODPATH="$MAGISKTMP/$MODDIRNAME/$MODID"
+
+ui_print "- 正在提取模塊文件"
+unzip -o "$ZIPFILE" -x 'META-INF/*' 'module.prop' -d $MAGISKTMP/$MODDIRNAME/$MODID/ >/dev/null 2>&1 || { ui_print "! 解压失败"; exit 1; }
+
+ui_print "- 正在安裝模塊：$MODID"
+install_module || exit $?
+
+ui_print " "
+ui_print "*******************************"
+ui_print "   安裝完成！"
+ui_print "   重啟應用以使用更改"
+ui_print "*******************************"
+exit 0
